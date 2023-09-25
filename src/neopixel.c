@@ -145,44 +145,22 @@ void neopixel_init(uint16_t num_leds)
 	}
 
     neopixel_pin = (gpio_port_pins_t)BIT(led_neopixel.pin);
-    // neopixel_port = &led_neopixel.port;
 
-//	gpio_pin_set_dt(&led_neopixel, 1);
-/*
-	nrf_gpio_cfg_output(mPIXEL_DATA_PIN);
-	NRF_GPIO->OUTCLR = (1UL << mPIXEL_DATA_PIN);
-	nrf_gpio_pin_clear(mPIXEL_DATA_PIN);
-	nrf_gpio_cfg_output(mPIXEL_DATA_PIN);
-	NRF_GPIO->OUTCLR = (1UL << mPIXEL_DATA_PIN);
-	nrf_gpio_pin_set(mPIXEL_DATA_PIN);
-*/
+	// mPIXEL_DATA_PIN=led_neopixel.pin;
+	// m_strip.leds = (color_t*) malloc(sizeof(color_t) * num_leds);
+	// m_strip.pin_num = mPIXEL_DATA_PIN;
+	// m_strip.num_leds = num_leds;
 
-	mPIXEL_DATA_PIN=led_neopixel.pin;
-	m_strip.leds = (color_t*) malloc(sizeof(color_t) * num_leds);
-	m_strip.pin_num = mPIXEL_DATA_PIN;
-	m_strip.num_leds = num_leds;
-
-	for (int i = 0; i < num_leds; i++)
-	{	
-		m_strip.leds[i].simple.g = 0;
-		m_strip.leds[i].simple.r = 0;
-		m_strip.leds[i].simple.b = 0;
-	}
-
+	// for (int i = 0; i < num_leds; i++)
+	// {	
+	// 	m_strip.leds[i].simple.g = 0;
+	// 	m_strip.leds[i].simple.r = 0;
+	// 	m_strip.leds[i].simple.b = 0;
+	// }
 }
 
-void neopixel_clear()
-{
-	for (int i = 0; i < m_strip.num_leds; i++)
-	{
-		m_strip.leds[i].simple.g = 0;
-		m_strip.leds[i].simple.r = 0;
-		m_strip.leds[i].simple.b = 0;
-	}
-	neopixel_show();
-}
 
-void neopixel_show_color(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) {
+void neopixel_show_color(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2, int msecs) {
     /**
      * Send this command to change the color of the LEDs.
      * 
@@ -191,8 +169,8 @@ void neopixel_show_color(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t
      * THIS IS THE PRIMARY FUNCTION WE SHOULD BE USING.
      */
 
-    NEOPIXEL_SET_ZERO();
-	HAL_usDelay(500);
+    // NEOPIXEL_SET_ZERO();
+	// HAL_usDelay(500);
 
     // LED 1 Green
     if ((g1 & 128) > 0)	{NEOPIXEL_SEND_ONE}
@@ -305,190 +283,93 @@ void neopixel_show_color(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t
     if ((b2 & 1) > 0)	{NEOPIXEL_SEND_ONE}
     else	{NEOPIXEL_SEND_ZERO}
 
-	HAL_usDelay(50);
-	//	nrf_gpio_pin_set(PIN);
-}
-
-void test() {
-    // Green
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    // Red
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    // Blue
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-
-    // Green
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-
-    // Red
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-
-    // Blue
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-
-    NEOPIXEL_SET_ZERO();
-
-    HAL_msDelay(3000);
+    for (int i=0; i<100; i++) {
+        NEOPIXEL_SET_ZERO();
+    }
     
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
+    HAL_msDelay(msecs);
 
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-    NEOPIXEL_SEND_ZERO
-
-}
-
-void neopixel_show()
-{
-	//	const uint8_t PIN =  m_strip.pin_num;
-
-	//	NRF_GPIO->OUTCLR = (1UL << PIN);
-	//	nrf_gpio_pin_clear(PIN);
+	// HAL_usDelay(50);
 	//	nrf_gpio_pin_set(PIN);
-
-	NEOPIXEL_SET_ZERO();
-	HAL_usDelay(80);
-	__disable_irq();
-	for (int i = 0; i < m_strip.num_leds; i++)
-	{
-		//Serial.print(" Red: ");Serial.print(m_strip.leds[i].grb[0]);Serial.print(" Green: ");Serial.print(m_strip.leds[i].grb[1]);Serial.print(" Blue: ");Serial.println(m_strip.leds[i].grb[2]);
-		for (int j = 0; j < 3; j++)
-		{
-			if ((m_strip.leds[i].grb[j] & 128) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 64) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 32) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 16) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 8) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 4) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 2) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-			
-			if ((m_strip.leds[i].grb[j] & 1) > 0)	{NEOPIXEL_SEND_ONE}
-			else	{NEOPIXEL_SEND_ZERO}
-		}
-	}
-
-	HAL_usDelay(50);
-	//	nrf_gpio_pin_set(PIN);
-	__enable_irq();
 }
 
-void neopixel_set_color(uint16_t index, uint8_t red, uint8_t green, uint8_t blue )
-{
-	m_strip.leds[index].simple.r = red;
-	m_strip.leds[index].simple.g = green;
-	m_strip.leds[index].simple.b = blue;
-}
 
-void neopixel_set_color_and_show(uint16_t index, uint8_t red, uint8_t green, uint8_t blue)
-{
-	m_strip.leds[index].simple.r = red;
-	m_strip.leds[index].simple.g = green;
-	m_strip.leds[index].simple.b = blue;
-	neopixel_show();
-}
+// void neopixel_show()
+// {
+// 	//	const uint8_t PIN =  m_strip.pin_num;
 
-void neopixel_destroy()
-{
-	free(m_strip.leds);
-	m_strip.num_leds = 0;
-	m_strip.pin_num = 0;
-}
+// 	//	NRF_GPIO->OUTCLR = (1UL << PIN);
+// 	//	nrf_gpio_pin_clear(PIN);
+// 	//	nrf_gpio_pin_set(PIN);
+
+// 	NEOPIXEL_SET_ZERO();
+// 	HAL_usDelay(80);
+// 	__disable_irq();
+// 	for (int i = 0; i < m_strip.num_leds; i++)
+// 	{
+// 		//Serial.print(" Red: ");Serial.print(m_strip.leds[i].grb[0]);Serial.print(" Green: ");Serial.print(m_strip.leds[i].grb[1]);Serial.print(" Blue: ");Serial.println(m_strip.leds[i].grb[2]);
+// 		for (int j = 0; j < 3; j++)
+// 		{
+// 			if ((m_strip.leds[i].grb[j] & 128) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 64) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 32) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 16) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 8) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 4) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 2) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+			
+// 			if ((m_strip.leds[i].grb[j] & 1) > 0)	{NEOPIXEL_SEND_ONE}
+// 			else	{NEOPIXEL_SEND_ZERO}
+// 		}
+// 	}
+
+// 	HAL_usDelay(50);
+// 	//	nrf_gpio_pin_set(PIN);
+// 	__enable_irq();
+// }
+
+// void neopixel_set_color(uint16_t index, uint8_t red, uint8_t green, uint8_t blue )
+// {
+// 	m_strip.leds[index].simple.r = red;
+// 	m_strip.leds[index].simple.g = green;
+// 	m_strip.leds[index].simple.b = blue;
+// }
+
+// void neopixel_set_color_and_show(uint16_t index, uint8_t red, uint8_t green, uint8_t blue)
+// {
+// 	m_strip.leds[index].simple.r = red;
+// 	m_strip.leds[index].simple.g = green;
+// 	m_strip.leds[index].simple.b = blue;
+// 	neopixel_show();
+// }
+
+// void neopixel_clear()
+// {
+// 	for (int i = 0; i < m_strip.num_leds; i++)
+// 	{
+// 		m_strip.leds[i].simple.g = 0;
+// 		m_strip.leds[i].simple.r = 0;
+// 		m_strip.leds[i].simple.b = 0;
+// 	}
+// 	neopixel_show();
+// }
+
+// void neopixel_destroy()
+// {
+// 	free(m_strip.leds);
+// 	m_strip.num_leds = 0;
+// 	m_strip.pin_num = 0;
+// }

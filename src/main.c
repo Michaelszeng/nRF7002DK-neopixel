@@ -38,85 +38,29 @@ void main(void)
 	// Edit 9/24/23: actually this is not needed jk
 	// nrfx_clock_divider_set(NRF_CLOCK_DOMAIN_HFCLK, NRF_CLOCK_HFCLK_DIV_1);
 
-	k_msleep(500);
-
 	printk("STARTING PROGRAM\n");
 
 	int ret;
 
-	// Note: this init might not be necessary
 	neopixel_init(2);
 
-	// neopixel_set_color(0, 255, 0, 0);
-	// neopixel_set_color(1, 0, 255, 0);
-    
-	// neopixel_show();
-	// k_sleep(K_MSEC(1000));
+	neopixel_show_color(255, 255, 255, 255, 0, 0, 3000);
 
-	// neopixel_set_color(0, 0, 0, 0);
-	// neopixel_show();
-	// HAL_delay(3000);
+	neopixel_show_color(0, 255, 0, 0, 0, 255, 3000);
 
-	// neopixel_set_color(0, 0, 0, 255);
-	// neopixel_show();
-	// HAL_delay(3000);
+	neopixel_show_color(0, 0, 0, 0, 0, 0, 1000);
 
-	test();
+	neopixel_show_color(255, 255, 0, 0, 0, 0, 3000);
 
+	neopixel_show_color(0, 0, 0, 0, 255, 255, 3000);
 
-	neopixel_clear();
-
-	neopixel_destroy();
+	neopixel_show_color(0, 0, 0, 0, 0, 0, 10000000);
 
 	int ctr = 0;
 	while(1){
 		printk("looping...  %d\n", ctr);
 		ctr++;
 
-		// neopixel_set_color(0, 255, 0, 0);
-		// neopixel_set_color(1, 255, 0, 0);
-		// neopixel_show();
-		// HAL_delay(1000);
-
-		// neopixel_set_color(0, 0, 255, 0);
-		// neopixel_set_color(1, 0, 255, 0);
-		// neopixel_show();
-		// HAL_delay(1000);
-
-		// neopixel_set_color(0, 0, 0, 255);
-		// neopixel_set_color(1, 0, 0, 255);
-		// neopixel_show();
-		// HAL_delay(1000);
-
-		// neopixel_set_color(0, 255, 255, 255);
-		// neopixel_set_color(1, 0, 0, 0);
-		// neopixel_show();
-		// HAL_delay(200);
-
-		// neopixel_set_color(0, 0, 0, 0);
-		// neopixel_set_color(1, 255, 255, 255);
-		// neopixel_show();
-		// HAL_delay(200);
-
-		// neopixel_set_color(0, 0, 0, 0);
-		// neopixel_set_color(1, 0, 0, 0);
-		// neopixel_show();
-		// HAL_delay(200);
-
-		// neopixel_set_color(0, 0, 0, 0);
-		// neopixel_set_color(1, 0, 0, 0);
-		// neopixel_show();
-		// HAL_delay(200);
-
-		// neopixel_set_color(0, 0, 0, 0);
-		// neopixel_set_color(1, 0, 0, 0);
-		// neopixel_show();
-		// HAL_delay(200);
-
-		// neopixel_set_color(0, 255, 0, 0);
-		// neopixel_set_color(1, 0, 255, 0);
-
-		// neopixel_show();
 		k_sleep(K_MSEC(1000));
 	}
 }
