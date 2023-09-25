@@ -58,9 +58,6 @@ __ASM ( \
 gpio_port_set_bits_raw(led_neopixel.port, neopixel_pin); \
 __ASM ( \
 " NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t" \
-" NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t" \
-" NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t NOP\n\t" \
-" NOP\n\t NOP\n\t" \
 ); \
 gpio_port_clear_bits_raw(led_neopixel.port, neopixel_pin); \
 __ASM ( \
@@ -185,7 +182,135 @@ void neopixel_clear()
 	neopixel_show();
 }
 
+void neopixel_show_color(uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) {
+    /**
+     * Send this command to change the color of the LEDs.
+     * 
+     * Set to all 0's to turn the LEDs off.
+     * 
+     * THIS IS THE PRIMARY FUNCTION WE SHOULD BE USING.
+     */
+
+    NEOPIXEL_SET_ZERO();
+	HAL_usDelay(500);
+
+    // LED 1 Green
+    if ((g1 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g1 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+    // LED 1 Red
+    if ((r1 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r1 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+    // LED 1 Blue
+    if ((b1 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b1 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+
+
+
+    // LED 2 Green
+    if ((g2 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((g2 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+    // LED 2 Red
+    if ((r2 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((r2 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+    // LED 2 Blue
+    if ((b2 & 128) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 64) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 32) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 16) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 8) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 4) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 2) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+    if ((b2 & 1) > 0)	{NEOPIXEL_SEND_ONE}
+    else	{NEOPIXEL_SEND_ZERO}
+
+	HAL_usDelay(50);
+	//	nrf_gpio_pin_set(PIN);
+}
+
 void test() {
+    // Green
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
@@ -195,6 +320,7 @@ void test() {
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
+    // Red
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
@@ -202,6 +328,17 @@ void test() {
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    // Blue
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+    NEOPIXEL_SEND_ONE
+
+    // Green
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
@@ -211,6 +348,7 @@ void test() {
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
 
+    // Red
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
@@ -219,14 +357,8 @@ void test() {
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
     NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
-    NEOPIXEL_SEND_ONE
+
+    // Blue
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
     NEOPIXEL_SEND_ZERO
