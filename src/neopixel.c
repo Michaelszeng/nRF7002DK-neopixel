@@ -12,7 +12,7 @@
 static uint8_t mPIXEL_DATA_PIN;
 static neopixel_strip_t m_strip;
 
-#define NEOPIXEL_NODE DT_NODELABEL(led1)
+#define NEOPIXEL_NODE DT_NODELABEL(led0)
 static const struct gpio_dt_spec led_neopixel = GPIO_DT_SPEC_GET(NEOPIXEL_NODE, gpios);
 
 #define HAL_nsDelay(nano_sec) k_sleep(K_NSEC(nano_sec))

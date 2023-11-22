@@ -35,8 +35,7 @@ void main(void)
 {
 	// Set 128 MHz clock speed
 	// This is necessary so that the LED's can be controlled in time
-	// Edit 9/24/23: actually this is not needed jk
-	// nrfx_clock_divider_set(NRF_CLOCK_DOMAIN_HFCLK, NRF_CLOCK_HFCLK_DIV_1);
+	nrfx_clock_divider_set(NRF_CLOCK_DOMAIN_HFCLK, NRF_CLOCK_HFCLK_DIV_1);
 
 	printk("STARTING PROGRAM\n");
 
@@ -44,7 +43,7 @@ void main(void)
 
 	neopixel_init(2);
 
-	neopixel_show_color(255, 255, 255, 255, 0, 0, 3000);
+	neopixel_show_color(255, 255, 255, 255, 255, 255, 3000);
 
 	neopixel_show_color(0, 255, 0, 0, 0, 255, 3000);
 
